@@ -1,0 +1,180 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Atkarību instalēšana
+      id: atkaribu-instalesana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Atkarību instalēšana
+        setup-command: ''
+        command: './.tests/test0.sh'
+        timeout: 7
+        max-score: 0
+    - name: Datu ielasīšana - decimāldaļas atdalītājs
+      id: datu-ielasisana-decimaldalas-atdalitajs
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Datu ielasīšana - decimāldaļas atdalītājs
+        setup-command: ''
+        command: './.tests/test1.sh'
+        timeout: 3
+        max-score: 1
+    - name: Datu ielasīšana - lieko atstarpju izvākšana
+      id: datu-ielasisana-lieko-atstarpju-izvaksana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Datu ielasīšana - lieko atstarpju izvākšana
+        setup-command: ''
+        command: './.tests/test2.sh'
+        timeout: 3
+        max-score: 1
+    - name: Pārveidošana par faktoriem
+      id: parveidosana-par-faktoriem
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Pārveidošana par faktoriem
+        setup-command: ''
+        command: './.tests/test3.sh'
+        timeout: 3
+        max-score: 1
+    - name: Izvades pārvirzīšana
+      id: izvades-parvirzisana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Izvades pārvirzīšana
+        setup-command: ''
+        command: './.tests/test4.sh'
+        timeout: 3
+        max-score: 1
+    - name: Apkopojuma izvadīšana
+      id: apkopojuma-izvadisana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Apkopojuma izvadīšana
+        setup-command: ''
+        command: './.tests/test5.sh'
+        timeout: 3
+        max-score: 1
+    - name: Slope dalīšana pēc b
+      id: slope-dalisana-pec-b
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Slope dalīšana pēc b
+        setup-command: ''
+        command: './.tests/test6.sh'
+        timeout: 3
+        max-score: 1
+    - name: Average kolonnas radīšana
+      id: average-kolonnas-radisana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Average kolonnas radīšana
+        setup-command: ''
+        command: './.tests/test7.sh'
+        timeout: 3
+        max-score: 1
+    - name: tapply secīga pielietošana kordat
+      id: tapply-seciga-pielietosana-kordat
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: tapply secīga pielietošana kordat
+        setup-command: ''
+        command: './.tests/test8.sh'
+        timeout: 3
+        max-score: 1
+    - name: Prockordat radīšana
+      id: prockordat-radisana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Prockordat radīšana
+        setup-command: ''
+        command: './.tests/test9.sh'
+        timeout: 3
+        max-score: 1
+    - name: Slope pārveidošana
+      id: slope-parveidosana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Slope pārveidošana
+        setup-command: ''
+        command: './.tests/test10.sh'
+        timeout: 3
+        max-score: 1
+    - name: prockordat izdruka
+      id: prockordat-izdruka
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: prockordat izdruka
+        setup-command: ''
+        command: './.tests/test11.sh'
+        timeout: 3
+        max-score: 1
+    - name: SVG ierakstīšana
+      id: svg-ierakstisana
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SVG ierakstīšana
+        setup-command: ''
+        command: './.tests/test12.sh'
+        timeout: 3
+        max-score: 1
+    - name: SVG ieraksta beigas
+      id: svg-ieraksta-beigas
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: SVG ieraksta beigas
+        setup-command: ''
+        command: './.tests/test13.sh'
+        timeout: 3
+        max-score: 1
+    - name: Izkliedes grafiks
+      id: izkliedes-grafiks
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Izkliedes grafiks
+        setup-command: ''
+        command: './.tests/test14.sh'
+        timeout: 3
+        max-score: 1
+    - name: Kastu grafiks
+      id: kastu-grafiks
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Kastu grafiks
+        setup-command: ''
+        command: './.tests/test15.sh'
+        timeout: 3
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        ATKARIBU-INSTALESANA_RESULTS: "${{steps.atkaribu-instalesana.outputs.result}}"
+        DATU-IELASISANA-DECIMALDALAS-ATDALITAJS_RESULTS: "${{steps.datu-ielasisana-decimaldalas-atdalitajs.outputs.result}}"
+        DATU-IELASISANA-LIEKO-ATSTARPJU-IZVAKSANA_RESULTS: "${{steps.datu-ielasisana-lieko-atstarpju-izvaksana.outputs.result}}"
+        PARVEIDOSANA-PAR-FAKTORIEM_RESULTS: "${{steps.parveidosana-par-faktoriem.outputs.result}}"
+        IZVADES-PARVIRZISANA_RESULTS: "${{steps.izvades-parvirzisana.outputs.result}}"
+        APKOPOJUMA-IZVADISANA_RESULTS: "${{steps.apkopojuma-izvadisana.outputs.result}}"
+        SLOPE-DALISANA-PEC-B_RESULTS: "${{steps.slope-dalisana-pec-b.outputs.result}}"
+        AVERAGE-KOLONNAS-RADISANA_RESULTS: "${{steps.average-kolonnas-radisana.outputs.result}}"
+        TAPPLY-SECIGA-PIELIETOSANA-KORDAT_RESULTS: "${{steps.tapply-seciga-pielietosana-kordat.outputs.result}}"
+        PROCKORDAT-RADISANA_RESULTS: "${{steps.prockordat-radisana.outputs.result}}"
+        SLOPE-PARVEIDOSANA_RESULTS: "${{steps.slope-parveidosana.outputs.result}}"
+        PROCKORDAT-IZDRUKA_RESULTS: "${{steps.prockordat-izdruka.outputs.result}}"
+        SVG-IERAKSTISANA_RESULTS: "${{steps.svg-ierakstisana.outputs.result}}"
+        SVG-IERAKSTA-BEIGAS_RESULTS: "${{steps.svg-ieraksta-beigas.outputs.result}}"
+        IZKLIEDES-GRAFIKS_RESULTS: "${{steps.izkliedes-grafiks.outputs.result}}"
+        KASTU-GRAFIKS_RESULTS: "${{steps.kastu-grafiks.outputs.result}}"
+      with:
+        runners: atkaribu-instalesana,datu-ielasisana-decimaldalas-atdalitajs,datu-ielasisana-lieko-atstarpju-izvaksana,parveidosana-par-faktoriem,izvades-parvirzisana,apkopojuma-izvadisana,slope-dalisana-pec-b,average-kolonnas-radisana,tapply-seciga-pielietosana-kordat,prockordat-radisana,slope-parveidosana,prockordat-izdruka,svg-ierakstisana,svg-ieraksta-beigas,izkliedes-grafiks,kastu-grafiks
